@@ -4,6 +4,8 @@ test("Right click", async ({page})=>{
 
     await page.goto("https://testautomationpractice.blogspot.com/")
 
+    console.log("--------------------------Executed Sucessfully-----------------------")
+
     const field2= await page.locator("[id=field2]")
 
     await page.locator("//button[text()='Copy Text']").dblclick()
