@@ -1,0 +1,120 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: POMClassTest.spec.js >> POM class Test
+- Location: tests\POMClassTest.spec.js:6:5
+
+# Error details
+
+```
+Error: expect(received).toBeTruthy()
+
+Received: undefined
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - text:             
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "PRODUCT STORE" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - img [ref=e5]
+        - text: PRODUCT STORE
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "Home (current)" [ref=e9] [cursor=pointer]:
+            - /url: index.html
+            - text: Home
+            - generic [ref=e10]: (current)
+        - listitem [ref=e11]:
+          - link "Contact" [ref=e12] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e13]:
+          - link "About us" [ref=e14] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e15]:
+          - link "Cart" [ref=e16] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e17]:
+          - link "Log in" [ref=e18] [cursor=pointer]:
+            - /url: "#"
+        - listitem
+        - listitem
+        - listitem [ref=e19]:
+          - link "Sign up" [ref=e20] [cursor=pointer]:
+            - /url: "#"
+  - generic [ref=e22]:
+    - generic [ref=e23]:
+      - heading "Products" [level=2] [ref=e24]
+      - table [ref=e26]:
+        - rowgroup [ref=e27]:
+          - row "Pic Title Price x" [ref=e28]:
+            - columnheader "Pic" [ref=e29]
+            - columnheader "Title" [ref=e30]
+            - columnheader "Price" [ref=e31]
+            - columnheader "x" [ref=e32]
+        - rowgroup
+    - generic [ref=e33]:
+      - heading "Total" [level=2] [ref=e34]
+      - generic:
+        - generic:
+          - heading [level=3]
+      - button "Place Order" [ref=e35]
+  - generic [ref=e37]:
+    - generic [ref=e40]:
+      - heading "About Us" [level=4] [ref=e41]
+      - paragraph [ref=e42]: We believe performance needs to be validated at every stage of the software development cycle and our open source compatible, massively scalable platform makes that a reality.
+    - generic [ref=e45]:
+      - heading "Get in Touch" [level=4] [ref=e46]
+      - paragraph [ref=e47]: "Address: 2390 El Camino Real"
+      - paragraph [ref=e48]: "Phone: +440 123456"
+      - paragraph [ref=e49]: "Email: demo@blazemeter.com"
+    - heading "PRODUCT STORE" [level=4] [ref=e53]:
+      - img [ref=e54]
+      - text: PRODUCT STORE
+  - contentinfo [ref=e55]:
+    - paragraph [ref=e56]: Copyright © Product Store
+```
+
+# Test source
+
+```ts
+  1  | import {test, expect} from "@playwright/test"
+  2  | import { LoginPage } from "../POMClasses/LoginPage"
+  3  | import {HomePage} from "../POMClasses/HomePage"
+  4  | import {CartPage} from "../POMClasses/CartPage"
+  5  | 
+  6  | test("POM class Test", async ({page})=>{
+  7  |  //Login to the application
+  8  | 
+  9  |  const loginPage= new LoginPage(page)
+  10 |  
+  11 |  await loginPage.goToLoginPage()
+  12 | 
+  13 |  await loginPage.loginToApplication("pavanol","test@123")
+  14 | 
+  15 |  await page.waitForTimeout(3000)
+  16 | 
+  17 |  //Home page - add product to the cart
+  18 |  const homePage= new HomePage(page)
+  19 | 
+  20 |  homePage.addProductToCart("Nexus 6")
+  21 | 
+  22 |  await page.waitForTimeout(3000)
+  23 | 
+  24 |  //cart page - validate the product is added or not
+  25 |  const cartPage = new CartPage(page)
+  26 | 
+  27 |  const status=await cartPage.verifyProductIsAddedToCart("Nexus 6")
+> 28 |  await expect(status).toBeTruthy()
+     |                       ^ Error: expect(received).toBeTruthy()
+  29 | })
+```

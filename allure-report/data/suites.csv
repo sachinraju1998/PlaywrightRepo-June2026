@@ -1,0 +1,6 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","7801","Add to Cart","chromium","2026-06-16","passed","2026-06-16","","Hook2.spec.js","",""
+"","30744","Home page","chromium","2026-06-16","failed","2026-06-16","","Hook3.spec.js","",""
+"","1","Add to Cart","chromium","2026-06-16","skipped","2026-06-16","","Hook3.spec.js","",""
+"","5239","Home page","chromium","2026-06-16","failed","2026-06-16","","Hook2.spec.js","",""
+"","3066","Home page","chromium","2026-06-16","failed","2026-06-16","","Retries.spec.js","",""
