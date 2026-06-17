@@ -46,6 +46,7 @@ test("Assertion Practice",async ({page})=>{
 
     //-ve validation
     await expect(page).not.toHaveTitle()
+    await expect("sachin").not.toContain("Raj")
 
     //soft assert
     await expect.soft(page).toHaveTitle()
