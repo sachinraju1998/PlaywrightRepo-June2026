@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "DblClick": "npx playwright test DoubleClick.spec.js --headed",
+    "DblClick": "npx playwright test DoubleClick.spec.js",
     "Radiobutton": "npx playwright test RadioButtons.spec.js --headed",
     "regression": "npx playwright test DoubleClick.spec.js RadioButtons.spec.js --headed",
     "DiffEnv": "cross-env $env:test_env='qa'; npx playwright test DotenvFile.spec.js"
